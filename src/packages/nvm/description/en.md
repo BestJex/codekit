@@ -1,0 +1,1 @@
+> nvm is a version manager designed for Node.js. [source](https://github.com/nvm-sh/nvm)

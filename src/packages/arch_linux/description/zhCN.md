@@ -1,0 +1,1 @@
+> Arch Linux 是用于具有 x86-64 处理器的计算机的Linux发行版。 Arch Linux 遵循五项原则：简单性，现代性，实用性，用户中心性和多功能性。 [source](https://en.wikipedia.org/wiki/Arch_Linux)

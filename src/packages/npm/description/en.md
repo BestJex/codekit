@@ -1,0 +1,1 @@
+> npm (Node Package Manager) is Node.js's default package management system which written in JavaScript. [source](https://zh.wikipedia.org/wiki/Npm)

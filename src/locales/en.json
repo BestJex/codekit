@@ -1,0 +1,24 @@
+{
+  "home": {
+    "bg": {
+      "1": "Quickly find the mirror sites of commonly used development software",
+      "2": "Improve the development efficiency under the China mainland network",
+      "placeholder": "Start exploring now...",
+      "search": "Search"
+    }
+  },
+  "search": {
+    "source": "Source"
+  },
+  "package": {
+    "description": "Description",
+    "next": "Next",
+    "prev": "Prev",
+    "source": "Source",
+    "back": "Back",
+    "setup": "Setup",
+    "website": "Website",
+    "mirror": "Mirror",
+    "select": "Select your OS"
+  }
+}
