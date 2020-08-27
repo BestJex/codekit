@@ -2,7 +2,7 @@
 コマンドラインを開き、次のコマンドを実行します。
 
 ```bash
-{{cmd}} HOMEBREW_BOTTLE_DOMAIN="{{link}}"
+export HOMEBREW_BOTTLE_DOMAIN="{{link}}"
 ```
 
 # 2 - 使い始める

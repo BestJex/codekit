@@ -9,16 +9,8 @@ export default {
   ],
   os: [
     {
-      name: 'Windows',
-      variables: {
-        cmd: 'set'
-      }
-    },
-    {
       name: 'MacOS, Linux',
-      variables: {
-        cmd: 'export'
-      }
+      variables: {}
     }
   ]
 };
