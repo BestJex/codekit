@@ -19,6 +19,8 @@
     "setup": "Setup",
     "website": "Website",
     "mirror": "Mirror",
-    "select": "Select your OS"
+    "select": "Select your OS",
+    "star1": "If you feel this website is helpful for you, please give this project a star on",
+    "star2": "to support us. Thanks!"
   }
 }

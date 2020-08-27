@@ -6,6 +6,7 @@ module.exports = {
       if (!options[0].fileBlacklist) options[0].fileBlacklist = [];
       options[0].fileBlacklist.push(
         /lang-(en|ja)-json(\..+)?.js$/,
+        /lang-.+.js$/,
         /pkg-.+(\..+)?.js/,
         /mirror-.+(\..+)?.js/
         );

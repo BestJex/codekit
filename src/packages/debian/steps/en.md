@@ -29,3 +29,10 @@ Open the terminal and execute the following commands:
 ```bash
 apt update
 ```
+
+# 4 - Good to go
+Now you can use `apt` normally.
+
+```bash
+apt install <package name>
+```

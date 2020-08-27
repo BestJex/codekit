@@ -99,7 +99,20 @@
                 {{ i + 1 + ' - ' + titles[i] }}
               </h2>
               <div v-html="step" class="markdown-body"></div>
-              <div style="height: 80px"></div>
+              <div class="mt-6" v-if="i === steps.length - 1">
+                <v-alert class="mb-0" type="info" text>
+                  {{ $t('package.star1') }}
+                  <a
+                    href="https://github.com/wtongze/codekit"
+                    target="_blank"
+                    rel="noopener"
+                    class="star-link font-weight-bold"
+                    >Github</a
+                  >
+                  {{ $t('package.star2') }}
+                </v-alert>
+              </div>
+              <div style="height: 60px"></div>
               <v-row
                 class="ml-0 mr-0"
                 :style="{ position: 'absolute', bottom: '16px', width: 'calc(100% - 48px)' }"
@@ -124,6 +137,29 @@
             </v-stepper-content>
           </v-stepper-items>
         </v-stepper>
+        <div class="mt-4 px-6 copyright">
+          <a
+            href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+            target="_blank"
+            rel="noopener"
+            :style="{ textDecoration: 'none' }"
+            class="mr-4"
+            >CC BY-NC-SA 4.0</a
+          >
+          <a
+            href="http://mirrors.ustc.edu.cn/help/"
+            target="_blank"
+            :style="{ textDecoration: 'none' }"
+            class="mr-4"
+            >{{ $t('package.source') }}</a
+          >
+          <span class="mr-4">
+            © 2020, CodeKit.net
+          </span>
+          <span>
+            © 2017 - 2020, LUG@USTC
+          </span>
+        </div>
       </div>
     </v-container>
   </div>
@@ -141,7 +177,7 @@ export default {
   name: 'Package',
   data: () => ({
     pkgName: '',
-    description: '',
+    description: {},
     titles: [''],
     steps: [''],
     mirrors: [{ name: '', html: '', website: '' }],
@@ -273,5 +309,17 @@ export default {
   max-width: 400px;
   margin-left: auto;
   margin-right: 0;
+}
+.star-link {
+  margin-left: 4px;
+  margin-right: 4px;
+  color: #2196f3;
+}
+.copyright * {
+  font-size: 14px;
+  color: black !important;
+}
+.copyright span {
+  cursor: default;
 }
 </style>

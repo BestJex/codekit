@@ -29,3 +29,10 @@ EOF
 ```bash
 apt update
 ```
+
+# 4 - 开始使用
+现在便可以正常使用 `apt` 。
+
+```bash
+apt install <package name>
+```

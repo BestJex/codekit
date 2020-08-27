@@ -11,3 +11,10 @@ npm config set registry {{link}}
 ```bash
 npm config get registry
 ```
+
+# 3 - 使い始める
+これで、 `npm` を通常どおり使用できます。
+
+```bash
+npm install <package name>
+```

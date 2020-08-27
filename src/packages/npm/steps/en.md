@@ -11,3 +11,10 @@ Execute the following commands to confirm the npm registry has been changed.
 ```bash
 npm config get registry
 ```
+
+# 3 - Good to go
+Now you can use `npm` normally.
+
+```bash
+npm install <package name>
+```
