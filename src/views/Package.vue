@@ -137,7 +137,7 @@
             </v-stepper-content>
           </v-stepper-items>
         </v-stepper>
-        <div class="mt-4 px-6 copyright">
+        <div class="d-none d-sm-block mt-4 px-6 copyright">
           <a
             href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
             target="_blank"
@@ -157,6 +157,29 @@
             © 2020, CodeKit.net
           </span>
           <span>
+            © 2017 - 2020, LUG@USTC
+          </span>
+        </div>
+        <div class="d-table d-sm-none mt-4 px-6 copyright">
+          <div>
+            <a
+            href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+            target="_blank"
+            rel="noopener"
+            :style="{ textDecoration: 'none' }"
+            class="mr-4"
+            >CC BY-NC-SA 4.0</a
+          >
+          <a
+            href="http://mirrors.ustc.edu.cn/help/"
+            target="_blank"
+            :style="{ textDecoration: 'none' }"
+            >{{ $t('package.source') }}</a
+          >
+          </div>
+          <span>
+            © 2020, CodeKit.net
+            <br />
             © 2017 - 2020, LUG@USTC
           </span>
         </div>
