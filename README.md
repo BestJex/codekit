@@ -1,24 +1,5 @@
 # codekit
 
-## Project setup
-```
-npm install
-```
+> 快速查找常用开发软件的镜像源，提升国内网络下的开发效率
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+<https://codekit.net>
