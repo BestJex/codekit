@@ -99,6 +99,10 @@
                 {{ i + 1 + ' - ' + titles[i] }}
               </h2>
               <div v-html="step" class="markdown-body"></div>
+              <v-btn depressed class="copy-btn mt-4 d-block ml-auto mr-0">
+                <v-icon class="mr-2" small>mdi-content-copy</v-icon>
+                {{ $t('package.copy') }}
+              </v-btn>
               <div class="mt-6" v-if="i === steps.length - 1">
                 <v-alert class="mb-0" type="info" text>
                   {{ $t('package.star1') }}
@@ -163,19 +167,19 @@
         <div class="d-table d-sm-none mt-4 px-6 copyright">
           <div>
             <a
-            href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
-            target="_blank"
-            rel="noopener"
-            :style="{ textDecoration: 'none' }"
-            class="mr-4"
-            >CC BY-NC-SA 4.0</a
-          >
-          <a
-            href="http://mirrors.ustc.edu.cn/help/"
-            target="_blank"
-            :style="{ textDecoration: 'none' }"
-            >{{ $t('package.source') }}</a
-          >
+              href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+              target="_blank"
+              rel="noopener"
+              :style="{ textDecoration: 'none' }"
+              class="mr-4"
+              >CC BY-NC-SA 4.0</a
+            >
+            <a
+              href="http://mirrors.ustc.edu.cn/help/"
+              target="_blank"
+              :style="{ textDecoration: 'none' }"
+              >{{ $t('package.source') }}</a
+            >
           </div>
           <span>
             © 2020, CodeKit.net
@@ -344,5 +348,11 @@ export default {
 }
 .copyright span {
   cursor: default;
+}
+.markdown-body pre .copy-btn {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
 }
 </style>
