@@ -13,7 +13,7 @@ fs.mkdirSync(outputRootPath);
 langList.forEach(lang => {
   const descObj = { data: [] };
   fs.readdirSync(pkgRootPath).forEach(pkg => {
-    if (pkg !== 'index.js') {
+    if (fs.lstatSync(path.join(pkgRootPath, pkg)).isDirectory()) {
       const content = fs.readFileSync(path.join(pkgRootPath, pkg, `${lang}.md`), {
         encoding: 'utf-8'
       });

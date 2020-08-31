@@ -52,7 +52,6 @@ export function loadLanguageAsync(lang) {
       loadedLanguages.push(lang);
       return setI18nLanguage(lang);
     };
-    console.log(vuetifyLang);
     switch (vuetifyLang) {
       default:
       case 'zh-Hans':
