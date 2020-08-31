@@ -47,12 +47,29 @@ export function loadLanguageAsync(lang) {
   // If the language hasn't been loaded yet
   return import(/* webpackChunkName: "lang-[request]" */ `@/locales/${lang}.json`).then(msg => {
     const vuetifyLang = mapLanguage(lang);
-    import(/* webpackChunkName: "lang-[request]" */ `vuetify/es5/locale/${vuetifyLang}.js`).then(
-      ({ default: vuetifyMsg }) => {
-        i18n.setLocaleMessage(lang, { $vuetify: { ...vuetifyMsg }, ...msg });
-        loadedLanguages.push(lang);
-        return setI18nLanguage(lang);
-      }
-    );
+    const callback = ({ default: vuetifyMsg }) => {
+      i18n.setLocaleMessage(lang, { $vuetify: { ...vuetifyMsg }, ...msg });
+      loadedLanguages.push(lang);
+      return setI18nLanguage(lang);
+    };
+    console.log(vuetifyLang);
+    switch (vuetifyLang) {
+      default:
+      case 'zh-Hans':
+        import(/* webpackChunkName: "lang-vuetify-zh-Hans" */ 'vuetify/es5/locale/zh-Hans.js').then(
+          callback
+        );
+        break;
+      case 'en':
+        import(/* webpackChunkName: "lang-vuetify-en" */ 'vuetify/es5/locale/en.js').then(
+          callback
+        );
+        break;
+      case 'ja':
+        import(/* webpackChunkName: "lang-vuetify-ja" */ 'vuetify/es5/locale/ja.js').then(
+          callback
+        );
+        break;
+    }
   });
 }

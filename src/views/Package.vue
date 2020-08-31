@@ -95,7 +95,19 @@
               :step="i + 1"
               class="pt-4"
             >
-              <div class="mb-6" v-if="i === steps.length - 1">
+              <h2 class="mb-4">
+                {{ i + 1 + ' - ' + titles[i] }}
+              </h2>
+              <div v-html="step" class="markdown-body"></div>
+              <v-btn
+                depressed
+                class="copy-btn mt-4 d-block ml-auto mr-0"
+                v-if="i !== steps.length - 1"
+              >
+                <v-icon class="mr-2" small>mdi-content-copy</v-icon>
+                {{ $t('package.copy') }}
+              </v-btn>
+              <div class="mt-6" v-else>
                 <v-alert class="mb-0" type="info" text>
                   {{ $t('package.star1') }}
                   <a
@@ -108,14 +120,6 @@
                   {{ $t('package.star2') }}
                 </v-alert>
               </div>
-              <h2 class="mb-4">
-                {{ i + 1 + ' - ' + titles[i] }}
-              </h2>
-              <div v-html="step" class="markdown-body"></div>
-              <v-btn depressed class="copy-btn mt-4 d-block ml-auto mr-0">
-                <v-icon class="mr-2" small>mdi-content-copy</v-icon>
-                {{ $t('package.copy') }}
-              </v-btn>
               <div style="height: 60px"></div>
               <v-row
                 class="ml-0 mr-0"
