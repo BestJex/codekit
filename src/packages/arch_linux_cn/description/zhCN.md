@@ -1,1 +1,0 @@
-> Arch Linux 中文社区仓库是由 Arch Linux 中文社区驱动的非官方软件仓库，包含许多官方仓库未提供的额外的软件包，以及已有软件的 git 版本等变种。 [source](https://www.archlinuxcn.org/archlinux-cn-repo-and-mirror/)

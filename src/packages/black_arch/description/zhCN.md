@@ -1,1 +1,0 @@
-> BlackArch 是基于 Arch Linux 的渗透测试发行版，提供大量的网络安全工具。 它是专门为渗透测试人员和安全研究人员创建的开源发行版。 [source](https://en.wikipedia.org/wiki/BlackArch)

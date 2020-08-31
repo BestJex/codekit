@@ -74,16 +74,13 @@ export default {
         const loadingTimer = setTimeout(() => {
           this.loading = true;
         }, 1000);
-        for (const pkg of Object.keys(pkgObj)) {
-          const { default: description } = await import(
-            /* webpackChunkName: "pkg-[request]" */ `@/packages/${pkg}/description/${this.$i18n.locale}.md`
-          );
+        const { default: searchInfo } = await import(/* webpackChunkName: "pkg-[request]" */ `@/data/search.${this.locale}.json`);
+        searchInfo.data.forEach(pkg => {
           this.pkgInfo.push({
-            name: pkgObj[pkg],
-            key: pkg,
-            description
+            ...pkg,
+            name: pkgObj[pkg.key]
           });
-        }
+        });
         this.fuse = new Fuse(this.pkgInfo, {
           keys: [
             { name: 'name', score: 0.7 },

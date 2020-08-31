@@ -1,1 +1,0 @@
-> The Arch Linux Chinese Community Repository is an unofficial software repository driven by the Arch Linux Chinese Community. It contains many additional software packages that are not provided by the official repositories, as well as variants of existing software such as git versions. [source](https://www.archlinuxcn.org/archlinux-cn-repo-and-mirror/)

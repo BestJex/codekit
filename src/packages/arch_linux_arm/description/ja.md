@@ -1,1 +1,0 @@
-> Arch Linux ARM は、ARM コンピューター用の Linux ディストリビューションです。 [source](https://archlinuxarm.org/)

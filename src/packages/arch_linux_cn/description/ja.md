@@ -1,1 +1,0 @@
-> Arch Linux 中国語コミュニティリポジトリは、 Arch Linux 中国語コミュニティによって運営されている非公式のソフトウェアリポジトリです。公式リポジトリでは提供されていない多くの追加ソフトウェアパッケージや、 git バージョンなどの既存のソフトウェアのバリアントが含まれています。 [source](https://www.archlinuxcn.org/archlinux-cn-repo-and-mirror/)

@@ -1,1 +1,0 @@
-> Ubuntu 是一个基于 Debian 的 Linux 发行版，主要由自由和开源软件组成。 Ubuntu 正式发布了三个版本：桌面版，服务器版和用于物联网设备和机器人的 Core。所有版本都可以单独在计算机上运行，​​也可以在虚拟机中运行。 Ubuntu 是流行的云计算操作系统，并支持 OpenStack 。 [source](https://en.wikipedia.org/wiki/Ubuntu)

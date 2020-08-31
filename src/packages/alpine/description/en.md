@@ -1,1 +1,0 @@
-> Alpine Linux is a Linux distribution based on musl and BusyBox, designed for security, simplicity, and resource efficiency. Because of its small size, it is commonly used in containers providing quick boot-up times. [source](https://en.wikipedia.org/wiki/Alpine_Linux)

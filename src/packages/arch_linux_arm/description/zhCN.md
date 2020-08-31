@@ -1,1 +1,0 @@
-> Arch Linux ARM 是用于 ARM 计算机的 Linux 发行版。 [source](https://archlinuxarm.org/)

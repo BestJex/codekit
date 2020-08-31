@@ -231,16 +231,15 @@ export default {
         const mirrors = [];
         const mirrorsOption = [];
         const { name: pkg } = this.$route.params;
-        const { default: rawDescription } = await import(
-          /* webpackChunkName: "pkg-[request]" */ `@/packages/${pkg}/description/${this.$i18n.locale}.md`
-        );
-        const { default: rawSteps } = await import(
-          /* webpackChunkName: "pkg-[request]" */ `@/packages/${pkg}/steps/${this.$i18n.locale}.md`
-        );
         const { default: rawInfo } = await import(
+          /* webpackChunkName: "pkg-[request]" */ `@/packages/${pkg}/${this.$i18n.locale}.md`
+        );
+        const rawDescription = rawInfo.substr(0, rawInfo.indexOf('# ')).trim();
+        const rawSteps = rawInfo.substr(rawInfo.indexOf('# ')).trim();
+        const { default: rawOption } = await import(
           /* webpackChunkName: "pkg-[request]" */ `@/packages/${pkg}/`
         );
-        for (const mirrorName of rawInfo.mirrors) {
+        for (const mirrorName of rawOption.mirrors) {
           const mirrorKey = Object.keys(mirrorObj).find(key => mirrorObj[key] === mirrorName);
           const { default: rawMirror } = await import(
             /* webpackChunkName: "mirror-[request]" */ `@/mirrors/${mirrorKey}/description/${this.$i18n.locale}.md`
@@ -255,7 +254,7 @@ export default {
         const titles = [...rendered.matchAll(/<h1.+>(?<title>.+)<\/h1>/g)].map(
           match => match.groups.title.match(/\d\s?-\s?(?<title>.+)/).groups.title
         );
-        const packagesOption = rawInfo.os;
+        const packagesOption = rawOption.os;
         const variables = {
           ...mirrorsOption[this.mirrorNum],
           ...packagesOption[this.os].variables
@@ -271,7 +270,7 @@ export default {
             });
             return step;
           });
-        this.osList = rawInfo.os.map(({ name: text }, value) => ({
+        this.osList = rawOption.os.map(({ name: text }, value) => ({
           text,
           value
         }));

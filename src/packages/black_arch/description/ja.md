@@ -1,1 +1,0 @@
-> BlackArch は Arch Linux に基づく侵入テストディストリビューションであり、大量のサイバーセキュリティツールを提供します。 これは、侵入テスターやセキュリティ研究者のために特別に作成されたオープンソースのディストリビューションです。 [source](https://en.wikipedia.org/wiki/BlackArch)
