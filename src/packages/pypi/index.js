@@ -8,8 +8,7 @@ export default {
   ],
   os: [
     {
-      name: 'All',
-      variables: {}
+      name: 'All'
     }
   ]
 };

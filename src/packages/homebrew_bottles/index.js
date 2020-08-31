@@ -9,8 +9,7 @@ export default {
   ],
   os: [
     {
-      name: 'MacOS, Linux',
-      variables: {}
+      name: 'MacOS, Linux'
     }
   ]
 };

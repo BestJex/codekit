@@ -9,8 +9,7 @@ export default {
   ],
   os: [
     {
-      name: 'Black Arch',
-      variables: {}
+      name: 'Black Arch'
     },
   ]
 };

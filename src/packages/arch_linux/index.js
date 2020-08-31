@@ -9,8 +9,7 @@ export default {
   ],
   os: [
     {
-      name: 'Arch Linux',
-      variables: {}
+      name: 'Arch Linux'
     },
   ]
 };

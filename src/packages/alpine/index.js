@@ -9,8 +9,7 @@ export default {
   ],
   os: [
     {
-      name: 'Alpine',
-      variables: {}
+      name: 'Alpine'
     },
   ]
 };

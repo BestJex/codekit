@@ -9,8 +9,7 @@ export default {
   ],
   os: [
     {
-      name: 'Arch Linux ARM',
-      variables: {}
+      name: 'Arch Linux ARM'
     },
   ]
 };

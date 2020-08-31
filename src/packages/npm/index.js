@@ -6,8 +6,7 @@ export default {
   mirrors: [taobao],
   os: [
     {
-      name: 'All',
-      variables: {}
+      name: 'All'
     }
   ]
 };

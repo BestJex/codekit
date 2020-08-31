@@ -8,8 +8,7 @@ export default {
   ],
   os: [
     {
-      name: 'Chakra',
-      variables: {}
+      name: 'Chakra'
     },
   ]
 };
