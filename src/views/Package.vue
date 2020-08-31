@@ -95,15 +95,7 @@
               :step="i + 1"
               class="pt-4"
             >
-              <h2 class="mb-4">
-                {{ i + 1 + ' - ' + titles[i] }}
-              </h2>
-              <div v-html="step" class="markdown-body"></div>
-              <v-btn depressed class="copy-btn mt-4 d-block ml-auto mr-0">
-                <v-icon class="mr-2" small>mdi-content-copy</v-icon>
-                {{ $t('package.copy') }}
-              </v-btn>
-              <div class="mt-6" v-if="i === steps.length - 1">
+              <div class="mb-6" v-if="i === steps.length - 1">
                 <v-alert class="mb-0" type="info" text>
                   {{ $t('package.star1') }}
                   <a
@@ -116,6 +108,14 @@
                   {{ $t('package.star2') }}
                 </v-alert>
               </div>
+              <h2 class="mb-4">
+                {{ i + 1 + ' - ' + titles[i] }}
+              </h2>
+              <div v-html="step" class="markdown-body"></div>
+              <v-btn depressed class="copy-btn mt-4 d-block ml-auto mr-0">
+                <v-icon class="mr-2" small>mdi-content-copy</v-icon>
+                {{ $t('package.copy') }}
+              </v-btn>
               <div style="height: 60px"></div>
               <v-row
                 class="ml-0 mr-0"
@@ -193,8 +193,9 @@
 </template>
 
 <script>
-import marked from '@/utils/markdown';
+import * as Clipboard from 'clipboard';
 import DOMPurify from 'dompurify';
+import marked from '@/utils/markdown';
 import mdConvert from '@/utils/mdConvert.js';
 import pkgObj from '@/packages/';
 import mirrorObj from '@/mirrors';
@@ -213,7 +214,8 @@ export default {
     mirrorNum: 1,
     loading: false,
     os: 0,
-    osList: []
+    osList: [],
+    clipboard: null
   }),
   computed: {
     locale() {
@@ -280,6 +282,16 @@ export default {
         this.mirrorsOption = [...mirrorsOption];
         clearTimeout(loadingTimer);
         this.loading = false;
+        setTimeout(() => {
+          document.querySelectorAll('.copy-btn').forEach((el, i) => {
+            el.setAttribute('data-clipboard-target', `#code-${i}`);
+          });
+          document.querySelectorAll('.markdown-body pre code').forEach((el, i) => {
+            el.id = `code-${i}`;
+          });
+          if (this.clipboard) this.clipboard.destroy();
+          this.clipboard = new Clipboard('.copy-btn');
+        }, 500);
       })();
     }
   },
