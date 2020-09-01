@@ -8,6 +8,7 @@
   "chakra": "Chakra",
   "debian": "Debian",
   "epel": "EPEL",
+  "fedora": "Fedora",
   "homebrew_bottles": "Homebrew Bottles",
   "npm": "npm",
   "nvm": "nvm",
