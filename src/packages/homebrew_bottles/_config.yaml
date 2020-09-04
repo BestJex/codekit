@@ -1,0 +1,15 @@
+mirrors:
+  - ustc:
+      link: "https://mirrors.ustc.edu.cn/homebrew-bottles"
+  - tuna:
+      link: "https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
+references:
+  description:
+    url: "https://en.wikipedia.org/wiki/Homebrew_(package_manager)"
+  steps:
+    url: "https://mirrors.ustc.edu.cn/help/homebrew-bottles.html"
+    license: "CC BY-NC-SA 4.0"
+    license_url: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+os:
+  - name: "Mac OS"
+  - name: "Linux"

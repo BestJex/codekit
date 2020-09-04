@@ -1,7 +1,7 @@
 > Ubuntu is a Linux distribution based on Debian mostly composed of free and open-source software. Ubuntu is officially released in three editions: Desktop, Server, and Core for Internet of things devices and robots. All the editions can run on the computer alone, or in a virtual machine. Ubuntu is a popular operating system for cloud computing, with support for OpenStack.
-[source](https://en.wikipedia.org/wiki/Ubuntu)
 
 # 1 - Backup Current Configuration
+
 Open the terminal and execute the following commands:
 
 ```bash
@@ -9,6 +9,7 @@ mv /etc/apt/sources.list /etc/apt/sources.list.bak
 ```
 
 # 2 - Change the Mirrors
+
 Open the terminal and execute the following commands:
 
 ```bash
@@ -27,6 +28,7 @@ EOF
 ```
 
 # 3 - Update the Mirrors
+
 Open the terminal and execute the following commands:
 
 ```bash
@@ -34,6 +36,7 @@ apt update
 ```
 
 # 4 - Good to go
+
 Now you can use `apt` normally.
 
 ```bash

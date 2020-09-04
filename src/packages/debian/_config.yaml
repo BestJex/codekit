@@ -1,0 +1,23 @@
+mirrors:
+  - ustc:
+      link: "https://mirrors.ustc.edu.cn/debian"
+references:
+  description:
+    url: "https://en.wikipedia.org/wiki/Debian"
+  steps:
+    url: "https://mirrors.ustc.edu.cn/help/debian.html"
+    license: "CC BY-NC-SA 4.0"
+    license_url: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+os:
+  - name: "Debian 11"
+    variables:
+      version: "bullseye"
+  - name: "Debian 10"
+    variables:
+      version: "buster"
+  - name: "Debian 9"
+    variables:
+      version: "stretch"
+  - name: "Debian 8"
+    variables:
+      version: "jessie"

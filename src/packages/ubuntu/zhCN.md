@@ -1,7 +1,7 @@
-> Ubuntu 是一个基于 Debian 的 Linux 发行版，主要由自由和开源软件组成。 Ubuntu 正式发布了三个版本：桌面版，服务器版和用于物联网设备和机器人的 Core。所有版本都可以单独在计算机上运行，​​也可以在虚拟机中运行。 Ubuntu 是流行的云计算操作系统，并支持 OpenStack 。
-[source](https://en.wikipedia.org/wiki/Ubuntu)
+> Ubuntu 是一个基于 Debian 的 Linux 发行版，主要由自由和开源软件组成。 Ubuntu 正式发布了三个版本：桌面版，服务器版和用于物联网设备和机器人的 Core。所有版本都可以单独在计算机上运行，​​ 也可以在虚拟机中运行。 Ubuntu 是流行的云计算操作系统，并支持 OpenStack 。
 
 # 1 - 备份当前配置
+
 打开命令行并执行以下命令：
 
 ```bash
@@ -9,6 +9,7 @@ mv /etc/apt/sources.list /etc/apt/sources.list.bak
 ```
 
 # 2 - 修改镜像源
+
 打开命令行并执行以下命令：
 
 ```bash
@@ -27,6 +28,7 @@ EOF
 ```
 
 # 3 - 更新镜像源
+
 打开命令行并执行以下命令：
 
 ```bash
@@ -34,6 +36,7 @@ apt update
 ```
 
 # 4 - 开始使用
+
 现在便可以正常使用 `apt` 。
 
 ```bash

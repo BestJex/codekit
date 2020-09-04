@@ -1,7 +1,7 @@
-> Debian ，也称为 Debian GNU / Linux ，是由自由和开源软件组成的 Linux 发行版，由社区支持的 Debian Project 开发，该项目由 Ian Murdock 于1993年8月16日成立。
-[source](https://en.wikipedia.org/wiki/Debian)
+> Debian ，也称为 Debian GNU / Linux ，是由自由和开源软件组成的 Linux 发行版，由社区支持的 Debian Project 开发，该项目由 Ian Murdock 于 1993 年 8 月 16 日成立。
 
 # 1 - 备份当前配置
+
 打开命令行并执行以下命令：
 
 ```bash
@@ -9,6 +9,7 @@ mv /etc/apt/sources.list /etc/apt/sources.list.bak
 ```
 
 # 2 - 修改镜像源
+
 打开命令行并执行以下命令：
 
 ```bash
@@ -27,6 +28,7 @@ EOF
 ```
 
 # 3 - 更新镜像源
+
 打开命令行并执行以下命令：
 
 ```bash
@@ -34,6 +36,7 @@ apt update
 ```
 
 # 4 - 开始使用
+
 现在便可以正常使用 `apt` 。
 
 ```bash

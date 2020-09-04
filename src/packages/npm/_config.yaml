@@ -1,0 +1,12 @@
+mirrors:
+  - taobao:
+      link: "https://registry.npm.taobao.org"
+references:
+  description:
+    url: "https://zh.wikipedia.org/wiki/Npm"
+  steps:
+    url: "-"
+    license: "-"
+    license_url: "-"
+os:
+  - name: "All"

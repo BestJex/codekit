@@ -1,0 +1,23 @@
+mirrors:
+  - ustc:
+      link: "https://mirrors.ustc.edu.cn/centos"
+references:
+  description:
+    url: "https://en.wikipedia.org/wiki/CentOS"
+  steps:
+    url: "https://mirrors.ustc.edu.cn/help/centos.html"
+    license: "CC BY-NC-SA 4.0"
+    license_url: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+os:
+  - name: "CentOS 8"
+    variables:
+      path: "$contentdir"
+      extra: "/etc/yum.repos.d/CentOS-Extras.repo /etc/yum.repos.d/CentOS-AppStream.repo"
+  - name: "CentOS 7"
+    variables:
+      path: "centos"
+      extra: ""
+  - name: "CentOS 6"
+    variables:
+      path: "centos"
+      extra: ""

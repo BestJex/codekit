@@ -1,0 +1,14 @@
+mirrors:
+  - ustc:
+      link: "https://mirrors.ustc.edu.cn/archlinuxcn"
+  - tuna:
+      link: "https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn"
+references:
+  description:
+    url: "https://www.archlinuxcn.org/archlinux-cn-repo-and-mirror/"
+  steps:
+    url: "https://mirrors.ustc.edu.cn/help/archlinuxcn.html"
+    license: "CC BY-NC-SA 4.0"
+    license_url: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+os:
+  - name: "Arch Linux"

@@ -1,7 +1,7 @@
 > Homebrew は、無料でオープンソースのソフトウェアパッケージ管理システムで、 Apple の macOS オペレーティングシステムと Linux へのソフトウェアのインストールを簡素化します。
-[source](https://en.wikipedia.org/wiki/Homebrew_(package_manager))
 
 # 1 - 環境変数を設定する
+
 コマンドラインを開き、次のコマンドを実行します。
 
 ```bash
@@ -9,6 +9,7 @@ export HOMEBREW_BOTTLE_DOMAIN="{{link}}"
 ```
 
 # 2 - 使い始める
+
 これで、 `brew` を通常どおり使用できます。
 
 ```bash

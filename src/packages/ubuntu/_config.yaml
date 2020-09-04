@@ -1,0 +1,25 @@
+mirrors:
+  - ustc:
+      link: "https://mirrors.ustc.edu.cn/ubuntu"
+  - tuna:
+      link: "https://mirrors.tuna.tsinghua.edu.cn/ubuntu"
+references:
+  description:
+    url: "https://en.wikipedia.org/wiki/Ubuntu"
+  steps:
+    url: "https://mirrors.ustc.edu.cn/help/ubuntu.html"
+    license: "CC BY-NC-SA 4.0"
+    license_url: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+os:
+  - name: "Ubuntu 20.04 LTS"
+    variables:
+      version: "focal"
+  - name: "Ubuntu 18.04 LTS"
+    variables:
+      version: "bionic"
+  - name: "Ubuntu 16.04 LTS"
+    variables:
+      version: "xenial"
+  - name: "Ubuntu 14.04 LTS"
+    variables:
+      version: "trusty"

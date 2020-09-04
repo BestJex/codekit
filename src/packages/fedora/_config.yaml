@@ -1,0 +1,12 @@
+mirrors:
+  - ustc:
+      link: "https://mirrors.ustc.edu.cn/fedora"
+references:
+  description:
+    url: "https://en.wikipedia.org/wiki/Fedora_(operating_system)"
+  steps:
+    url: "https://mirrors.ustc.edu.cn/help/fedora.html"
+    license: "CC BY-NC-SA 4.0"
+    license_url: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+os:
+  - name: "Fedora"

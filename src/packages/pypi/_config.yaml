@@ -1,0 +1,12 @@
+mirrors:
+  - tuna:
+      link: "https://pypi.tuna.tsinghua.edu.cn"
+references:
+  description:
+    url: "https://en.wikipedia.org/wiki/Python_Package_Index"
+  steps:
+    url: "-"
+    license: "-"
+    license_url: "-"
+os:
+  - name: "All"

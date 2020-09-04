@@ -1,0 +1,24 @@
+mirrors:
+  - taobao:
+      link: "https://npm.taobao.org/mirrors/node"
+  - ustc:
+      link: "https://mirrors.ustc.edu.cn/node"
+  - tuna:
+      link: "https://mirrors.tuna.tsinghua.edu.cn/nodejs-release"
+references:
+  description:
+    url: "https://github.com/nvm-sh/nvm"
+  steps:
+    url: "-"
+    license: "-"
+    license_url: "-"
+os:
+  - name: "Windows"
+    variables:
+      cmd: "set"
+  - name: "Mac OS"
+    variables:
+      cmd: "export"
+  - name: "Linux"
+    variables:
+      cmd: "export"

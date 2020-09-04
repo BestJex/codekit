@@ -1,7 +1,7 @@
 > CentOS is a Linux distribution that provides a free, community-supported computing platform functionally compatible with its upstream source, Red Hat Enterprise Linux.
-[source](https://en.wikipedia.org/wiki/CentOS)
 
 # 1 - Change the mirror
+
 Open the terminal and execute the following commands:
 
 ```sh
@@ -12,6 +12,7 @@ sed -e 's|^mirrorlist=|#mirrorlist=|g' \
 ```
 
 # 2 - Update local cache
+
 Open the terminal and execute the following commands:
 
 ```sh
@@ -19,6 +20,7 @@ yum makecache
 ```
 
 # 3 - Good to go
+
 Now you can use `yum` normally.
 
 ```sh

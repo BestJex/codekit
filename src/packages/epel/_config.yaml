@@ -1,0 +1,12 @@
+mirrors:
+  - ustc:
+      link: "https://mirrors.ustc.edu.cn/epel"
+references:
+  description:
+    url: "https://fedoraproject.org/wiki/EPEL"
+  steps:
+    url: "https://mirrors.ustc.edu.cn/help/epel.html"
+    license: "CC BY-NC-SA 4.0"
+    license_url: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+os:
+  - name: "All"

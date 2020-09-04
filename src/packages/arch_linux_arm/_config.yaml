@@ -1,0 +1,14 @@
+mirrors:
+  - ustc:
+      link: "https://mirrors.ustc.edu.cn/archlinuxarm"
+  - tuna:
+      link: "https://mirrors.tuna.tsinghua.edu.cn/archlinuxarm"
+references:
+  description:
+    url: "https://archlinuxarm.org"
+  steps:
+    url: "https://mirrors.ustc.edu.cn/help/archlinuxarm.html"
+    license: "CC BY-NC-SA 4.0"
+    license_url: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+os:
+  - name: "Arch Linux ARM"
