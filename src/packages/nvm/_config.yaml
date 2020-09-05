@@ -9,9 +9,9 @@ references:
   description:
     url: "https://github.com/nvm-sh/nvm"
   steps:
-    url: "-"
-    license: "-"
-    license_url: "-"
+    url: "https://github.com/nvm-sh/nvm#usage"
+    license: "MIT"
+    license_url: "https://github.com/nvm-sh/nvm/blob/master/LICENSE.md"
 os:
   - name: "Windows"
     variables:

@@ -5,8 +5,8 @@ references:
   description:
     url: "https://zh.wikipedia.org/wiki/Npm"
   steps:
-    url: "-"
-    license: "-"
-    license_url: "-"
+    url: "https://starraven.github.io/2017/04/25/2017-04-25-hexo-install-problem/"
+    license: "CC BY-NC-SA 3.0"
+    license_url: "https://creativecommons.org/licenses/by-nc-sa/3.0/"
 os:
   - name: "All"
