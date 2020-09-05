@@ -1,1 +1,0 @@
-淘宝網ミラーは、アリババ OPSX ミラーステーションによって提供されるサービスです。[website](https://npm.taobao.org/mirrors/)

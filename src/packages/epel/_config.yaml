@@ -1,3 +1,4 @@
+name: "EPEL"
 mirrors:
   - ustc:
       link: "https://mirrors.ustc.edu.cn/epel"

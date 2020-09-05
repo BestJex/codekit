@@ -1,3 +1,4 @@
+name: "Debian"
 mirrors:
   - ustc:
       link: "https://mirrors.ustc.edu.cn/debian"

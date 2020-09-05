@@ -1,3 +1,4 @@
+name: "PyPI"
 mirrors:
   - tuna:
       link: "https://pypi.tuna.tsinghua.edu.cn"

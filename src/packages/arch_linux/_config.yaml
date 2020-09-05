@@ -1,3 +1,4 @@
+name: "Arch Linux"
 mirrors:
   - ustc:
       link: "https://mirrors.ustc.edu.cn/archlinux"

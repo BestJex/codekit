@@ -1,3 +1,4 @@
+name: "Black Arch"
 mirrors:
   - ustc:
       link: "https://mirrors.ustc.edu.cn/blackarch"

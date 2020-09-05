@@ -1,3 +1,4 @@
+name: "nvm"
 mirrors:
   - taobao:
       link: "https://npm.taobao.org/mirrors/node"

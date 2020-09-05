@@ -1,1 +1,0 @@
-Taobao mirror is a service provided by Alibaba OPSX mirror station. [website](https://npm.taobao.org/mirrors/)

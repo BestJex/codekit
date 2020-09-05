@@ -1,3 +1,4 @@
+name: "npm"
 mirrors:
   - taobao:
       link: "https://registry.npm.taobao.org"

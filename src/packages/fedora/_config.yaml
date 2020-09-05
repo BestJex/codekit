@@ -1,3 +1,4 @@
+name: "Fedora"
 mirrors:
   - ustc:
       link: "https://mirrors.ustc.edu.cn/fedora"

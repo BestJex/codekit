@@ -1,3 +1,4 @@
+name: "Alpine"
 mirrors:
   - ustc:
       link: "https://mirrors.ustc.edu.cn/alpine"
