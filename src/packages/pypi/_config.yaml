@@ -6,8 +6,8 @@ references:
   description:
     url: "https://en.wikipedia.org/wiki/Python_Package_Index"
   steps:
-    url: "-"
-    license: "-"
-    license_url: "-"
+    url: "https://mirrors.tuna.tsinghua.edu.cn/help/pypi/"
+    license: "GNU GPLv2.0"
+    license_url: "https://github.com/tuna/mirror-web/blob/master/LICENSE"
 os:
   - name: "All"

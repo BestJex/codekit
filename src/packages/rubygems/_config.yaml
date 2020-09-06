@@ -1,0 +1,13 @@
+name: "Ruby Gems"
+mirrors:
+  - tuna:
+      link: "https://mirrors.tuna.tsinghua.edu.cn/rubygems"
+references:
+  description:
+    url: "https://en.wikipedia.org/wiki/RubyGems"
+  steps:
+    url: "https://mirrors.tuna.tsinghua.edu.cn/help/rubygems/"
+    license: "GNU GPLv2.0"
+    license_url: "https://github.com/tuna/mirror-web/blob/master/LICENSE"
+os:
+  - name: "All"

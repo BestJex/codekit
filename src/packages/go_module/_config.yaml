@@ -1,0 +1,21 @@
+name: "Go Module"
+mirrors:
+  - opsx:
+      link: "https://mirrors.aliyun.com/goproxy"
+references:
+  description:
+    url: "https://en.wikipedia.org/wiki/Go_(programming_language)"
+  steps:
+    url: "https://blog.golang.org/module-mirror-launch"
+    license: "CC BY 3.0"
+    license_url: "https://creativecommons.org/licenses/by/3.0/"
+os:
+  - name: "Windows"
+    variables:
+      cmd: "set"
+  - name: "Mac OS"
+    variables:
+      cmd: "export"
+  - name: "Linux"
+    variables:
+      cmd: "export"
