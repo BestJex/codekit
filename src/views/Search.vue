@@ -8,14 +8,14 @@
         <v-container class="pa-5">
           <h1 class="mb-2">{{ $t('home.bg.search') }}</h1>
           <v-text-field
-            v-model="keyword"
+            v-model="search.keyword"
             :placeholder="$t('home.bg.placeholder')"
             solo
-            @keyup="search"
+            @keyup="searchKeyword"
             :style="{ textOverflow: 'ellipsis' }"
           >
             <template v-slot:append>
-              <v-btn icon @click="search">
+              <v-btn icon @click="searchKeyword">
                 <v-icon class="icon-align">mdi-magnify</v-icon>
               </v-btn>
             </template>
@@ -24,17 +24,17 @@
       </v-col>
     </v-row>
     <v-container class="pa-5">
-      <v-card class="my-4 rounded-lg" v-for="(result, index) in searchResult" :key="index">
+      <v-card class="my-4 rounded-lg" v-for="pkg in search.result" :key="pkg.key">
         <v-card-title>
-          <router-link :to="'/package/' + result.item.key">
-            <span class="pkg-link">{{ result.item.name }}</span>
+          <router-link :to="'/package/' + pkg.key">
+            <span class="pkg-link">{{ pkg.name }}</span>
           </router-link>
         </v-card-title>
         <v-card-text class="pb-0">
-          <div class="markdown-body" v-html="renderMd(result.item.description).html"></div>
+          <div class="markdown-body" v-html="mdRender(pkg.description)"></div>
         </v-card-text>
         <v-card-actions>
-          <v-btn text :href="renderMd(result.item.description).source" target="_blank">
+          <v-btn text :href="pkg.reference" target="_blank">
             {{ $t('search.source') }}
             <v-icon small>mdi-open-in-new</v-icon>
           </v-btn>
@@ -46,52 +46,54 @@
 
 <script>
 import Fuse from 'fuse.js';
+import DOMPurify from 'dompurify';
+import marked from 'marked';
 import RouterLink from '@/components/RouterLink';
 import 'github-markdown-css';
-import pkgObj from '@/packages/';
-import mdConvert from '@/utils/mdConvert.js';
 
 export default {
   name: 'Search',
   data: () => ({
     loading: false,
-    pkgInfo: [],
-    fuse: undefined,
-    keyword: '',
-    searchResult: [],
-    source: [],
-    rawMdHTML: []
+    search: {
+      index: [],
+      result: [],
+      keyword: '',
+      fuse: null
+    }
   }),
+  created() {
+    this.search.keyword = this.$route.params.keyword;
+    this.loadData();
+  },
   methods: {
-    search() {
-      this.searchResult = this.fuse.search(this.keyword);
-    },
-    renderMd(src) {
-      return mdConvert.toDescObj(src);
-    },
-    setUp() {
+    loadData() {
       (async () => {
         const loadingTimer = setTimeout(() => {
           this.loading = true;
         }, 1000);
-        const { default: searchInfo } = await import(/* webpackChunkName: "pkg-[request]" */ `@/data/search.${this.locale}.json`);
-        searchInfo.data.forEach(pkg => {
-          this.pkgInfo.push({
-            ...pkg,
-            name: pkgObj[pkg.key]
-          });
-        });
-        this.fuse = new Fuse(this.pkgInfo, {
+        const { data: searchIndex } = await import(
+          /* webpackChunkName: "pkg-[request]" */ `@/data/search.${this.locale}.json`
+        );
+        this.search.index = [...searchIndex];
+        this.search.fuse = new Fuse(this.search.index, {
           keys: [
             { name: 'name', score: 0.7 },
             { name: 'description', score: 0.3 }
           ],
           includeScore: true
         });
-        this.search();
+        this.searchKeyword();
         clearTimeout(loadingTimer);
         this.loading = false;
       })();
+    },
+    searchKeyword() {
+      const { fuse, keyword } = this.search;
+      this.search.result = fuse.search(keyword).map(result => result.item);
+    },
+    mdRender(src) {
+      return DOMPurify.sanitize(marked(src));
     }
   },
   computed: {
@@ -101,13 +103,8 @@ export default {
   },
   watch: {
     locale() {
-      this.pkgInfo = [];
-      this.setUp();
+      this.loadData();
     }
-  },
-  mounted() {
-    this.keyword = this.$route.params.keyword;
-    this.setUp();
   },
   components: {
     RouterLink

@@ -14,7 +14,7 @@ module.exports = {
     });
     config.module
       .rule('raw')
-      .test(/\.md$/)
+      .test(/\.md|\.yaml$/)
       .use('raw-loader')
       .loader('raw-loader')
       .end();

@@ -31,15 +31,20 @@
 </template>
 
 <script>
+function adjBackground() {
+  const clientHeight = document.querySelector('.v-toolbar__content').clientHeight;
+  document.documentElement.style.setProperty('--header-height', `${clientHeight}px`);
+}
+
 export default {
   name: 'Home',
   mounted() {
-    const adjBackground = () => {
-      const clientHeight = document.querySelector('.v-toolbar__content').clientHeight;
-      document.documentElement.style.setProperty('--header-height', `${clientHeight}px`);
-    };
-    window.addEventListener('load', adjBackground);
-    window.addEventListener('resize', adjBackground);
+    document.addEventListener('load', adjBackground);
+    document.addEventListener('resize', adjBackground);
+  },
+  destroyed() {
+    document.removeEventListener('load', adjBackground);
+    document.removeEventListener('resize', adjBackground);
   },
   data: () => ({
     keyword: ''

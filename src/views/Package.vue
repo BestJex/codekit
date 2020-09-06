@@ -8,7 +8,7 @@
         <v-container class="mb-2 pa-5">
           <v-row no-gutters align="center">
             <v-col>
-              <h1>{{ pkgName }}</h1>
+              <h1>{{ pkg.name }}</h1>
             </v-col>
             <v-col>
               <v-btn text class="d-block ml-auto mr-0" large @click="$router.go(-1)">
@@ -20,13 +20,18 @@
         </v-container>
       </v-col>
     </v-row>
-    <v-container class="pa-5">
+    <v-container v-if="pkg" class="pa-5">
       <div class="mt-4">
         <h2 class="mb-2">{{ $t('package.description') }}</h2>
         <div class="pa-6">
-          <div class="mb-2 markdown-body" v-html="description.html"></div>
+          <div class="mb-2 markdown-body" v-html="mdRender(pkg.description)"></div>
           <div class="text-right">
-            <v-btn link elevation="0" :href="description.source" target="_blank">
+            <v-btn
+              link
+              elevation="0"
+              :href="pkg.references.description.url || ''"
+              target="_blank"
+            >
               {{ $t('package.source') }}
               <v-icon small>mdi-open-in-new</v-icon>
             </v-btn>
@@ -36,16 +41,16 @@
       <div class="mt-4">
         <h2 class="mb-4">{{ $t('package.mirror') }}</h2>
         <v-card>
-          <v-tabs v-model="mirrorNum">
-            <v-tab v-for="(mirror, index) in mirrors" :key="index + 'tab'">
+          <v-tabs v-model="current.mirror">
+            <v-tab v-for="(mirror, i) in pkg.mirrors" :key="i + '-tab'">
               {{ mirror.name }}
             </v-tab>
           </v-tabs>
-          <v-tabs-items v-model="mirrorNum">
-            <v-tab-item v-for="(mirror, index) in mirrors" :key="index + 'tab-item'">
+          <v-tabs-items v-model="current.mirror">
+            <v-tab-item v-for="(mirror, i) in pkg.mirrors" :key="i + '-tab-item'">
               <v-card flat>
                 <v-card-text class="px-6 pt-4 pb-2">
-                  <div class="markdown-body" v-html="mirror.html"></div>
+                  <div class="markdown-body" v-html="mdRender(mirror.description)"></div>
                 </v-card-text>
                 <v-card-actions class="px-6 pt-2 pb-4">
                   <v-btn
@@ -72,37 +77,39 @@
           <v-col cols="7">
             <v-select
               class="select-os"
-              v-model="os"
-              :items="osList"
+              v-model="current.os"
+              :items="pkg.os"
+              item-text="name"
+              :item-value="target => pkg.os.indexOf(target)"
               label="os"
               solo
               :placeholder="$t('package.select')"
             ></v-select>
           </v-col>
         </v-row>
-        <v-stepper v-model="stepNum" :key="!!steps.length" :style="{ marginTop: '-32px' }">
+        <v-stepper v-model="current.step" :key="pkg.steps.length" :style="{ marginTop: '-32px' }">
           <v-stepper-header class="stepper-header">
-            <template v-for="(title, i) in titles">
+            <template v-for="(step, i) in pkg.steps">
               <v-stepper-step :key="`${i}-step`" :step="i + 1"></v-stepper-step>
-              <v-divider v-if="i !== titles.length - 1" :key="`${i}-divider`"></v-divider>
+              <v-divider v-if="i !== pkg.steps.length - 1" :key="`${i}-divider`"></v-divider>
             </template>
           </v-stepper-header>
 
           <v-stepper-items>
             <v-stepper-content
-              v-for="(step, i) in steps"
+              v-for="(step, i) in pkg.steps"
               :key="`${i}-content`"
               :step="i + 1"
               class="pt-4"
             >
               <h2 class="mb-4">
-                {{ i + 1 + ' - ' + titles[i] }}
+                {{ i + 1 + ' - ' + step.title }}
               </h2>
-              <div v-html="step" class="markdown-body"></div>
+              <div v-html="stepRender(step.content)" class="markdown-body"></div>
               <v-btn
                 depressed
                 class="copy-btn mt-4 d-block ml-auto mr-0"
-                v-if="i !== steps.length - 1"
+                v-if="i !== pkg.steps.length - 1"
               >
                 <v-icon class="mr-2" small>mdi-content-copy</v-icon>
                 {{ $t('package.copy') }}
@@ -128,16 +135,16 @@
                 <v-btn
                   class="ml-0 mr-auto"
                   text
-                  @click="stepNum = stepNum - 1"
-                  :disabled="stepNum === 1"
+                  @click="current.step--"
+                  :disabled="current.step === 1"
                 >
                   {{ $t('package.prev') }}
                 </v-btn>
                 <v-btn
                   class="ml-auto mr-0"
                   color="primary"
-                  @click="stepNum = stepNum + 1"
-                  :disabled="stepNum === steps.length"
+                  @click="current.step++"
+                  :disabled="current.step === pkg.steps.length"
                 >
                   {{ $t('package.next') }}
                 </v-btn>
@@ -145,51 +152,22 @@
             </v-stepper-content>
           </v-stepper-items>
         </v-stepper>
-        <div class="d-none d-sm-block mt-4 px-6 copyright">
+        <div class="mt-4 px-6 copyright">
           <a
-            href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+            :href="pkg.references.steps.license_url"
             target="_blank"
             rel="noopener"
             :style="{ textDecoration: 'none' }"
             class="mr-4"
-            >CC BY-NC-SA 4.0</a
+            >{{ pkg.references.steps.license }}</a
           >
           <a
-            href="http://mirrors.ustc.edu.cn/help/"
+            :href="pkg.references.steps.url"
             target="_blank"
             :style="{ textDecoration: 'none' }"
             class="mr-4"
             >{{ $t('package.source') }}</a
           >
-          <span class="mr-4">
-            © 2020, CodeKit.net
-          </span>
-          <span>
-            © 2017 - 2020, LUG@USTC
-          </span>
-        </div>
-        <div class="d-table d-sm-none mt-4 px-6 copyright">
-          <div>
-            <a
-              href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
-              target="_blank"
-              rel="noopener"
-              :style="{ textDecoration: 'none' }"
-              class="mr-4"
-              >CC BY-NC-SA 4.0</a
-            >
-            <a
-              href="http://mirrors.ustc.edu.cn/help/"
-              target="_blank"
-              :style="{ textDecoration: 'none' }"
-              >{{ $t('package.source') }}</a
-            >
-          </div>
-          <span>
-            © 2020, CodeKit.net
-            <br />
-            © 2017 - 2020, LUG@USTC
-          </span>
         </div>
       </div>
     </v-container>
@@ -197,141 +175,193 @@
 </template>
 
 <script>
-import * as Clipboard from 'clipboard';
+import Clipboard from 'clipboard';
 import DOMPurify from 'dompurify';
-import marked from '@/utils/markdown';
-import mdConvert from '@/utils/mdConvert.js';
-import pkgObj from '@/packages/';
-import mirrorObj from '@/mirrors';
+import marked from 'marked';
+import yaml from 'js-yaml';
 import 'github-markdown-css';
+import { data as packages } from '@/data/packages';
 
 export default {
   name: 'Package',
   data: () => ({
-    pkgName: '',
-    description: {},
-    titles: [''],
-    steps: [''],
-    mirrors: [{ name: '', html: '', website: '' }],
-    mirrorsOption: [],
-    stepNum: 1,
-    mirrorNum: 1,
+    pkg: {
+      description: '',
+      mirrors: [],
+      name: '',
+      os: [],
+      references: {
+        description: {
+          url: ''
+        },
+        steps: {
+          license: '',
+          license_url: '',
+          url: ''
+        }
+      },
+      steps: []
+    },
+    current: {
+      mirror: 0,
+      os: 0,
+      step: 1
+    },
     loading: false,
-    os: 0,
-    osList: [],
     clipboard: null
   }),
   computed: {
     locale() {
       return this.$i18n.locale;
+    },
+    variables() {
+      return {
+        ...(this.pkg.mirrors[this.current.mirror] || {}).variables,
+        ...(this.pkg.os[this.current.os] || {}).variables
+      };
     }
   },
   methods: {
-    setUp() {
+    stepRender(src) {
+      let compiledSrc = src;
+      [...src.matchAll(/(?<varStr>\{\{\s?(?<varName>.*?)\s?\}\})/g)].forEach(({ groups: match }) => {
+        compiledSrc = compiledSrc.replace(match.varStr, this.variables[match.varName]);
+      });
+      return this.mdRender(compiledSrc);
+    },
+    mdRender(src) {
+      return DOMPurify.sanitize(marked(src));
+    },
+    parsePkgInfo(info) {
+      const sepatatorPosition = info.indexOf('# ');
+      const description = info.substr(0, sepatatorPosition).trim();
+      const stepsContent = info.substr(sepatatorPosition).trim();
+      const steps = [];
+      stepsContent
+        .split(/[\s\S]{0,2}#\s?\d\s?-\s?(.*)[\s\S]{1,2}/)
+        .slice(1)
+        .forEach((text, i) => {
+          const content = text.trim();
+          if (i % 2 === 0) {
+            steps[i / 2] = { title: content };
+          } else {
+            steps[(i - 1) / 2].content = content;
+          }
+        });
+      return { description, steps };
+    },
+    loadPkg() {
       (async () => {
+        // Start loading animation
         const loadingTimer = setTimeout(() => {
           this.loading = true;
         }, 1000);
-        const mirrors = [];
-        const mirrorsOption = [];
-        const { name: pkg } = this.$route.params;
-        const { default: rawInfo } = await import(
-          /* webpackChunkName: "pkg-[request]" */ `@/packages/${pkg}/${this.$i18n.locale}.md`
+
+        // Get package key
+        const { name: pkgKey } = this.$route.params;
+
+        // Import pacakage '<locale>.md' and '_config.yaml'
+        const { default: pkgInfo } = await import(
+          /* webpackChunkName: "pkg-[request]" */
+          `@/packages/${pkgKey}/${this.locale}.md`
         );
-        const rawDescription = rawInfo.substr(0, rawInfo.indexOf('# ')).trim();
-        const rawSteps = rawInfo.substr(rawInfo.indexOf('# ')).trim();
-        const { default: rawOption } = await import(
-          /* webpackChunkName: "pkg-[request]" */ `@/packages/${pkg}/`
+        const { default: tempPkgConfig } = await import(
+          /* webpackChunkName: "pkg-[request]" */
+          `@/packages/${pkgKey}/_config.yaml`
         );
-        for (const mirrorName of rawOption.mirrors) {
-          const mirrorKey = Object.keys(mirrorObj).find(key => mirrorObj[key] === mirrorName);
-          const { default: rawMirror } = await import(
-            /* webpackChunkName: "mirror-[request]" */ `@/mirrors/${mirrorKey}/description/${this.$i18n.locale}.md`
+        const pkgConfig = yaml.load(tempPkgConfig);
+
+        const pkgMirrors = [...pkgConfig.mirrors];
+        pkgConfig.mirrors = [];
+        pkgMirrors.forEach(async (mirror, i) => {
+          // Get mirror key
+          const mirrorKey = Object.keys(mirror)[0];
+
+          // Import mirror description
+          const { default: mirrorDescription } = await import(
+            /* webpackChunkName: "mirror-[request]" */
+            `@/mirrors/${mirrorKey}/${this.locale}.md`
           );
-          const { default: rawMirrorOption } = await import(
-            /* webpackChunkName: "mirror-[request]" */ `@/mirrors/${mirrorKey}/packages/${pkg}.js`
+
+          // Import mirror _config.yaml
+          const { default: tempMirrorConfig } = await import(
+            /* webpackChunkName: "mirror-[request]" */
+            `@/mirrors/${mirrorKey}/_config.yaml`
           );
-          mirrors.push({ ...mdConvert.toDescObj(rawMirror), name: mirrorName });
-          mirrorsOption.push(rawMirrorOption);
-        }
-        const rendered = DOMPurify.sanitize(marked(rawSteps));
-        const titles = [...rendered.matchAll(/<h1.+>(?<title>.+)<\/h1>/g)].map(
-          match => match.groups.title.match(/\d\s?-\s?(?<title>.+)/).groups.title
-        );
-        const packagesOption = rawOption.os;
-        const variables = {
-          ...mirrorsOption[this.mirrorNum],
-          ...packagesOption[this.os].variables
-        };
-        const steps = rendered
-          .split(/<\/?h1.+>/)
-          .slice(1)
-          .map(step => {
-            const matches = [...step.matchAll(/\{\{(?<key>.+?)\}\}/g)];
-            matches.forEach(match => {
-              const { key } = match.groups;
-              step = step.replaceAll(`{{${key}}}`, variables[key]);
-            });
-            return step;
+          const mirrorConfig = yaml.load(tempMirrorConfig);
+
+          // Add mirror data into pkgConfig
+          pkgConfig.mirrors.push({
+            key: mirrorKey,
+            description: mirrorDescription,
+            variables: {
+              ...pkgMirrors[i][mirrorKey]
+            },
+            ...mirrorConfig
           });
-        this.osList = rawOption.os.map(({ name: text }, value) => ({
-          text,
-          value
-        }));
-        this.description = mdConvert.toDescObj(rawDescription);
-        this.titles = [...titles];
-        this.steps = [...steps];
-        this.mirrors = [...mirrors];
-        this.mirrorsOption = [...mirrorsOption];
+        });
+
+        const { description, steps } = this.parsePkgInfo(pkgInfo);
+        this.pkg = {
+          ...pkgConfig,
+          description,
+          steps
+        };
+
+        // Connect clipboard
+        this.connectClipboard();
+        this.adjustStepper();
+
+        // Stop loading animation
         clearTimeout(loadingTimer);
         this.loading = false;
-        setTimeout(() => {
-          document.querySelectorAll('.copy-btn').forEach((el, i) => {
-            el.setAttribute('data-clipboard-target', `#code-${i}`);
-          });
-          document.querySelectorAll('.markdown-body pre code').forEach((el, i) => {
-            el.id = `code-${i}`;
-          });
-          if (this.clipboard) this.clipboard.destroy();
-          this.clipboard = new Clipboard('.copy-btn');
-        }, 500);
       })();
+    },
+    adjustStepper() {
+      const steps = document.querySelectorAll('.v-stepper__content');
+      const stepsHeight = [];
+      steps.forEach(step => {
+        if (step.style.display === 'none') {
+          step.style.display = 'block';
+          stepsHeight.push(step.scrollHeight);
+          step.style.display = 'none';
+        } else {
+          stepsHeight.push(step.scrollHeight);
+        }
+      });
+      const maxHeight = Math.max(...stepsHeight);
+      steps.forEach(step => {
+        step.style.height = `${maxHeight}px`;
+      });
+    },
+    connectClipboard() {
+      setTimeout(() => {
+        document.querySelectorAll('.copy-btn').forEach((el, i) => {
+          el.setAttribute('data-clipboard-target', `#code-${i}`);
+        });
+        document.querySelectorAll('.markdown-body pre code').forEach((el, i) => {
+          el.id = `code-${i}`;
+        });
+        if (this.clipboard) this.clipboard.destroy();
+        this.clipboard = new Clipboard('.copy-btn');
+      }, 500);
     }
   },
-  beforeMount() {
-    this.pkgName = pkgObj[this.$route.params.name];
-    if (this.pkgName) {
-      this.setUp();
+  created() {
+    const { name } = this.$route.params;
+    if (packages.includes(name)) {
+      this.loadPkg();
     } else {
-      this.$router.push(`/search/${this.$route.params.name}`);
+      this.$router.push(`/search/${name}`);
     }
   },
   updated() {
-    const steps = document.querySelectorAll('.v-stepper__content');
-    const stepsHeight = [];
-    steps.forEach(step => {
-      if (step.style.display === 'none') {
-        step.style.display = 'block';
-        stepsHeight.push(step.scrollHeight);
-        step.style.display = 'none';
-      } else {
-        stepsHeight.push(step.scrollHeight);
-      }
-    });
-    const maxHeight = Math.max(...stepsHeight);
-    steps.forEach(step => {
-      step.style.height = `${maxHeight}px`;
-    });
+    this.adjustStepper();
+    this.connectClipboard();
   },
   watch: {
     locale() {
-      this.setUp();
-    },
-    os() {
-      this.setUp();
-    },
-    mirrorNum() {
-      this.setUp();
+      this.loadPkg();
     }
   }
 };
@@ -363,6 +393,13 @@ export default {
 }
 .copyright span {
   cursor: default;
+}
+.markdown-body a {
+  color: #0366d6 !important;
+  text-decoration: none !important;
+}
+.markdown-body a:hover {
+  text-decoration: underline !important;
 }
 .markdown-body pre .copy-btn {
   position: absolute;
